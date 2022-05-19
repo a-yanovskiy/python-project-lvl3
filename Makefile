@@ -1,24 +1,27 @@
 install:
-	@poetry install
+	poetry install
 
 test:
-	poetry run pytest hexlet_python_package tests
+	poetry run pytest tests -vv
+
+test-coverage:
+	poetry run pytest --cov=page_loader --cov-report xml tests/
 
 lint:
-	poetry run flake8 hexlet_python_package
+	poetry run flake8 page_loader
 
 selfcheck:
 	poetry check
 
 check: selfcheck test lint
 
-build: check
-	@poetry build
+build:
+	poetry build
+
+publish:
+	poetry publish --dry-run
 
 package-install:
-	pip install --user dist/*.whl
+	python3 -m pip install --user dist/*.whl
 
-test-coverage:
-	poetry run pytest --cov=gendiff --cov-report xml tests/
-
-.PHONY: install test lint selfcheck check build package-install test-coverage
+.PHONY: install test test-coverage lint selfcheck check build publish package-install
