@@ -17,6 +17,7 @@ bs4 = "^0.0.1"
 flake8 = "^4.0.1"
 autopep8 = "^1.6.0"
 pytest = "^7.1.2"
+requests-mock = "^1.9.3"
 
 [tool.poetry.scripts]
 gendiff = "page_loader.scripts.page_loader:main"
